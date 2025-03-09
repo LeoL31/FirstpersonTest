@@ -1125,7 +1125,7 @@ Transform:
   m_GameObject: {fileID: 1584053429}
   serializedVersion: 2
   m_LocalRotation: {x: -0, y: 0.8858315, z: -0, w: -0.46400726}
-  m_LocalPosition: {x: 0, y: 1.379, z: 0}
+  m_LocalPosition: {x: 0, y: 2.76, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children:
@@ -1146,11 +1146,10 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: e60847b67a3cfdc48a0d4e31286bc00e, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  controller: {fileID: 1584053430}
-  playerDefaultSpeed: 8
-  playerSneakingSpeed: 4
-  playerRunningSpeed: 11
-  playerMovmenAcceleration: 8
+  walkSpeed: 8
+  runSpeed: 11
+  crouchSpeed: 4
+  acceleration: 8
   jumpHeight: 3
   gravity: -9.81
   groundCheck: {fileID: 1856446564}
@@ -1403,9 +1402,10 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: c927e4fa1b8bd4845920d4c96c2aa38d, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  MouseSensitivity: 100
-  MaxLookUp: 80
+  MouseXSensitivity: 100
+  MouseYSensitivity: 100
   MaxLookDown: -90
+  MaxLookUp: 80
   LockMouse: 1
   playerBody: {fileID: 1584053431}
 --- !u!1 &1856446563
