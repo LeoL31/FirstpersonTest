@@ -1147,7 +1147,10 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   controller: {fileID: 1584053430}
-  playerSpeed: 8
+  playerDefaultSpeed: 8
+  playerSneakingSpeed: 4
+  playerRunningSpeed: 11
+  playerMovmenAcceleration: 8
   jumpHeight: 3
   gravity: -9.81
   groundCheck: {fileID: 1856446564}
@@ -1401,8 +1404,10 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   MouseSensitivity: 100
-  playerBody: {fileID: 1584053431}
+  MaxLookUp: 80
+  MaxLookDown: -90
   LockMouse: 1
+  playerBody: {fileID: 1584053431}
 --- !u!1 &1856446563
 GameObject:
   m_ObjectHideFlags: 0

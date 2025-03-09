@@ -3,8 +3,12 @@ using UnityEngine;
 public class MouseLook : MonoBehaviour
 {
     [SerializeField] float MouseSensitivity = 100f;
-    [SerializeField] Transform playerBody;
+    [SerializeField] float MaxLookUp = 90f;
+    [SerializeField] float MaxLookDown = -90f;
     [SerializeField] bool LockMouse = true;
+    [SerializeField] Transform playerBody;
+    
+
 
     private float xRotation = 0f;
 
@@ -28,7 +32,7 @@ public class MouseLook : MonoBehaviour
         float mouseY = Input.GetAxis("Mouse Y") * MouseSensitivity * Time.deltaTime;
 
         xRotation -= mouseY;
-        xRotation = Mathf.Clamp(xRotation, -90f, 90f);
+        xRotation = Mathf.Clamp(xRotation, MaxLookDown, MaxLookUp);
 
         transform.localRotation = Quaternion.Euler(xRotation, 0f, 0f);
         playerBody.Rotate(Vector3.up * mouseX);
