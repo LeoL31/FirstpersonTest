@@ -12,6 +12,8 @@ public class PlayerMovment : MonoBehaviour
     [SerializeField] private float walkSpeed = 8f;
     [SerializeField] private float runSpeed = 11f;
     [SerializeField] private float crouchSpeed = 4f;
+    [SerializeField] private float stamina = 400f;
+    [SerializeField] private float staminaReductionSpeed = 5f;
     [SerializeField] private float acceleration = 8f;
 
     [Header("Jumping & Gravity")]
@@ -47,7 +49,7 @@ public class PlayerMovment : MonoBehaviour
         }
 
         // Handle Movement State Switching
-        if (Input.GetKey(KeyCode.LeftShift)) currentState = MovementState.Running;
+        if (Input.GetKey(KeyCode.LeftShift) && stamina > 8) currentState = MovementState.Running;
         else if (Input.GetKey(KeyCode.LeftControl)) currentState = MovementState.Crouching;
         else currentState = MovementState.Walking;
 
@@ -65,7 +67,21 @@ public class PlayerMovment : MonoBehaviour
                 break;
         }
 
+        //Stamina
+        
+        if (Input.GetKey(KeyCode.LeftShift) && stamina > 8)
+        {
+            stamina -= staminaReductionSpeed * Time.deltaTime;
+            Debug.Log("Running");
+        }
+        else
+        {
+            stamina += 3 * Time.deltaTime;
+            Debug.Log("Not Running");
+        }
+        stamina = Mathf.Clamp(stamina, 0, 400);
 
+        
         // Move player
         float x = Input.GetAxis("Horizontal");
         float z = Input.GetAxis("Vertical");
@@ -74,7 +90,7 @@ public class PlayerMovment : MonoBehaviour
         currentSpeed = Mathf.Lerp(currentSpeed, currentSpeed, acceleration * Time.deltaTime);
         controller.Move(move * currentSpeed * Time.deltaTime);
 
-        // Debug.Log("Current Speed: " + currentSpeed);
+         Debug.Log("Current Speed: " + currentSpeed);
 
 
         // Jumping
