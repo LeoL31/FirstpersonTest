@@ -1084,6 +1084,8 @@ GameObject:
   - component: {fileID: 1584053431}
   - component: {fileID: 1584053430}
   - component: {fileID: 1584053432}
+  - component: {fileID: 1584053434}
+  - component: {fileID: 1584053433}
   m_Layer: 0
   m_Name: Player First Person
   m_TagString: Untagged
@@ -1149,9 +1151,11 @@ MonoBehaviour:
   walkSpeed: 5
   runSpeed: 11
   crouchSpeed: 4
-  stamina: 400
-  staminaReductionSpeed: 50
   acceleration: 8
+  maxStamina: 400
+  staminaReductionSpeed: 50
+  staminaRegenSpeed: 3
+  regenDelay: 2
   jumpHeight: 3
   gravity: -9.81
   groundCheck: {fileID: 1856446564}
@@ -1159,6 +1163,68 @@ MonoBehaviour:
   groundMask:
     serializedVersion: 2
     m_Bits: 64
+--- !u!114 &1584053433
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1584053429}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 62899f850307741f2a39c98a8b639597, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  m_Actions: {fileID: -944628639613478452, guid: 0253e44c82b21cc4f8afe2ea242775b1, type: 3}
+  m_NotificationBehavior: 2
+  m_UIInputModule: {fileID: 0}
+  m_DeviceLostEvent:
+    m_PersistentCalls:
+      m_Calls: []
+  m_DeviceRegainedEvent:
+    m_PersistentCalls:
+      m_Calls: []
+  m_ControlsChangedEvent:
+    m_PersistentCalls:
+      m_Calls: []
+  m_ActionEvents:
+  - m_PersistentCalls:
+      m_Calls: []
+    m_ActionId: 06fb54ae-d854-4f85-a4ef-d61ded1cc673
+    m_ActionName: 'PlayerOnLand/Move[/Keyboard/w,/Keyboard/s,/Keyboard/a,/Keyboard/d]'
+  - m_PersistentCalls:
+      m_Calls: []
+    m_ActionId: 06014a5a-6cc7-4811-8f1a-2b016313f4b6
+    m_ActionName: 'PlayerOnLand/Jump[/Keyboard/space]'
+  - m_PersistentCalls:
+      m_Calls: []
+    m_ActionId: e9e157dc-7c2a-43fc-881e-2c0b44d84fc5
+    m_ActionName: PlayerOnLand/Sprint
+  - m_PersistentCalls:
+      m_Calls: []
+    m_ActionId: ee941ea5-9e0d-42b5-baec-f88cf33ccfcb
+    m_ActionName: PlayerOnLand/Croutch
+  - m_PersistentCalls:
+      m_Calls: []
+    m_ActionId: 02985bb8-525c-4467-85da-b267a13b37c1
+    m_ActionName: 'PlayerOnLand/Interact[/Keyboard/e]'
+  m_NeverAutoSwitchControlSchemes: 0
+  m_DefaultControlScheme: 
+  m_DefaultActionMap: PlayerOnLand
+  m_SplitScreenIndex: -1
+  m_Camera: {fileID: 0}
+--- !u!114 &1584053434
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1584053429}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 83b99741b2499614d8436f6e570b4b88, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &1823688464
 GameObject:
   m_ObjectHideFlags: 0
