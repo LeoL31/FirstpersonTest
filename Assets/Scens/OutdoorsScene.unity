@@ -981,8 +981,8 @@ Transform:
   m_GameObject: {fileID: 847816701}
   serializedVersion: 2
   m_LocalRotation: {x: -0, y: -0, z: -0.08616214, w: 0.99628115}
-  m_LocalPosition: {x: -15.666548, y: 7.0238748, z: 5.4376664}
-  m_LocalScale: {x: -4.5, y: 1, z: 1}
+  m_LocalPosition: {x: -22.81, y: 8.27, z: 5.4376664}
+  m_LocalScale: {x: 20, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 390210045}
@@ -1146,14 +1146,16 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: e60847b67a3cfdc48a0d4e31286bc00e, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  walkSpeed: 5
-  runSpeed: 11
-  crouchSpeed: 4
-  stamina: 400
-  staminaReductionSpeed: 50
+  walkSpeed: 4
+  runSpeed: 5.5
+  crouchSpeed: 2
   acceleration: 8
-  jumpHeight: 3
-  gravity: -9.81
+  maxStamina: 400
+  staminaReductionSpeed: 50
+  staminaRegenSpeed: 3
+  regenDelay: 2
+  jumpHeight: 1
+  gravity: -19.62
   groundCheck: {fileID: 1856446564}
   groundDistance: 0.4
   groundMask:

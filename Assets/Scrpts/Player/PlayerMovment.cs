@@ -80,9 +80,9 @@ public class PlayerMovment : MonoBehaviour
         Vector3 move = transform.right * x + transform.forward * z;
 
 
-        // controller.Move(move.normalized * currentSpeed * Time.deltaTime);
-
-        controller.Move(move * currentSpeed * Time.deltaTime);
+        //Aplay Movement
+        currentSpeed = Mathf.Lerp(currentSpeed, currentSpeed, acceleration * Time.deltaTime);
+        controller.Move(move.normalized * currentSpeed * Time.deltaTime);
 
         //Stamina Drain & Regen Delay
         if (currentState == MovementState.Running && move.magnitude > 0.1f)
