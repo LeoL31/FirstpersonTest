@@ -24,7 +24,7 @@
                     "initialStateCheck": false
                 },
                 {
-                    "name": "Sprint",
+                    "name": "Run",
                     "type": "Button",
                     "id": "e9e157dc-7c2a-43fc-881e-2c0b44d84fc5",
                     "expectedControlType": "",
@@ -121,18 +121,18 @@
                 {
                     "name": "",
                     "id": "c2a36347-cbe4-49ed-a549-eeb1d120fc94",
-                    "path": "",
+                    "path": "<Keyboard>/leftShift",
                     "interactions": "",
                     "processors": "",
                     "groups": "",
-                    "action": "Sprint",
+                    "action": "Run",
                     "isComposite": false,
                     "isPartOfComposite": false
                 },
                 {
                     "name": "",
                     "id": "fb7664f4-73ff-47ec-bd44-0bfaae20390c",
-                    "path": "",
+                    "path": "<Keyboard>/leftCtrl",
                     "interactions": "",
                     "processors": "",
                     "groups": "",
