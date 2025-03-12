@@ -88,7 +88,7 @@ public partial class @PlayerControls: IInputActionCollection2, IDisposable
     ""name"": ""PlayerControls"",
     ""maps"": [
         {
-            ""name"": ""PlayerOnLand"",
+            ""name"": ""Gameplay"",
             ""id"": ""0d07de8a-b34a-4b2b-9271-ae115b99cc4d"",
             ""actions"": [
                 {
@@ -242,18 +242,18 @@ public partial class @PlayerControls: IInputActionCollection2, IDisposable
     ],
     ""controlSchemes"": []
 }");
-        // PlayerOnLand
-        m_PlayerOnLand = asset.FindActionMap("PlayerOnLand", throwIfNotFound: true);
-        m_PlayerOnLand_Move = m_PlayerOnLand.FindAction("Move", throwIfNotFound: true);
-        m_PlayerOnLand_Jump = m_PlayerOnLand.FindAction("Jump", throwIfNotFound: true);
-        m_PlayerOnLand_Sprint = m_PlayerOnLand.FindAction("Sprint", throwIfNotFound: true);
-        m_PlayerOnLand_Croutch = m_PlayerOnLand.FindAction("Croutch", throwIfNotFound: true);
-        m_PlayerOnLand_Interact = m_PlayerOnLand.FindAction("Interact", throwIfNotFound: true);
+        // Gameplay
+        m_Gameplay = asset.FindActionMap("Gameplay", throwIfNotFound: true);
+        m_Gameplay_Move = m_Gameplay.FindAction("Move", throwIfNotFound: true);
+        m_Gameplay_Jump = m_Gameplay.FindAction("Jump", throwIfNotFound: true);
+        m_Gameplay_Sprint = m_Gameplay.FindAction("Sprint", throwIfNotFound: true);
+        m_Gameplay_Croutch = m_Gameplay.FindAction("Croutch", throwIfNotFound: true);
+        m_Gameplay_Interact = m_Gameplay.FindAction("Interact", throwIfNotFound: true);
     }
 
     ~@PlayerControls()
     {
-        UnityEngine.Debug.Assert(!m_PlayerOnLand.enabled, "This will cause a leak and performance issues, PlayerControls.PlayerOnLand.Disable() has not been called.");
+        UnityEngine.Debug.Assert(!m_Gameplay.enabled, "This will cause a leak and performance issues, PlayerControls.Gameplay.Disable() has not been called.");
     }
 
     /// <summary>
@@ -326,49 +326,49 @@ public partial class @PlayerControls: IInputActionCollection2, IDisposable
         return asset.FindBinding(bindingMask, out action);
     }
 
-    // PlayerOnLand
-    private readonly InputActionMap m_PlayerOnLand;
-    private List<IPlayerOnLandActions> m_PlayerOnLandActionsCallbackInterfaces = new List<IPlayerOnLandActions>();
-    private readonly InputAction m_PlayerOnLand_Move;
-    private readonly InputAction m_PlayerOnLand_Jump;
-    private readonly InputAction m_PlayerOnLand_Sprint;
-    private readonly InputAction m_PlayerOnLand_Croutch;
-    private readonly InputAction m_PlayerOnLand_Interact;
+    // Gameplay
+    private readonly InputActionMap m_Gameplay;
+    private List<IGameplayActions> m_GameplayActionsCallbackInterfaces = new List<IGameplayActions>();
+    private readonly InputAction m_Gameplay_Move;
+    private readonly InputAction m_Gameplay_Jump;
+    private readonly InputAction m_Gameplay_Sprint;
+    private readonly InputAction m_Gameplay_Croutch;
+    private readonly InputAction m_Gameplay_Interact;
     /// <summary>
-    /// Provides access to input actions defined in input action map "PlayerOnLand".
+    /// Provides access to input actions defined in input action map "Gameplay".
     /// </summary>
-    public struct PlayerOnLandActions
+    public struct GameplayActions
     {
         private @PlayerControls m_Wrapper;
 
         /// <summary>
         /// Construct a new instance of the input action map wrapper class.
         /// </summary>
-        public PlayerOnLandActions(@PlayerControls wrapper) { m_Wrapper = wrapper; }
+        public GameplayActions(@PlayerControls wrapper) { m_Wrapper = wrapper; }
         /// <summary>
-        /// Provides access to the underlying input action "PlayerOnLand/Move".
+        /// Provides access to the underlying input action "Gameplay/Move".
         /// </summary>
-        public InputAction @Move => m_Wrapper.m_PlayerOnLand_Move;
+        public InputAction @Move => m_Wrapper.m_Gameplay_Move;
         /// <summary>
-        /// Provides access to the underlying input action "PlayerOnLand/Jump".
+        /// Provides access to the underlying input action "Gameplay/Jump".
         /// </summary>
-        public InputAction @Jump => m_Wrapper.m_PlayerOnLand_Jump;
+        public InputAction @Jump => m_Wrapper.m_Gameplay_Jump;
         /// <summary>
-        /// Provides access to the underlying input action "PlayerOnLand/Sprint".
+        /// Provides access to the underlying input action "Gameplay/Sprint".
         /// </summary>
-        public InputAction @Sprint => m_Wrapper.m_PlayerOnLand_Sprint;
+        public InputAction @Sprint => m_Wrapper.m_Gameplay_Sprint;
         /// <summary>
-        /// Provides access to the underlying input action "PlayerOnLand/Croutch".
+        /// Provides access to the underlying input action "Gameplay/Croutch".
         /// </summary>
-        public InputAction @Croutch => m_Wrapper.m_PlayerOnLand_Croutch;
+        public InputAction @Croutch => m_Wrapper.m_Gameplay_Croutch;
         /// <summary>
-        /// Provides access to the underlying input action "PlayerOnLand/Interact".
+        /// Provides access to the underlying input action "Gameplay/Interact".
         /// </summary>
-        public InputAction @Interact => m_Wrapper.m_PlayerOnLand_Interact;
+        public InputAction @Interact => m_Wrapper.m_Gameplay_Interact;
         /// <summary>
         /// Provides access to the underlying input action map instance.
         /// </summary>
-        public InputActionMap Get() { return m_Wrapper.m_PlayerOnLand; }
+        public InputActionMap Get() { return m_Wrapper.m_Gameplay; }
         /// <inheritdoc cref="UnityEngine.InputSystem.InputActionMap.Enable()" />
         public void Enable() { Get().Enable(); }
         /// <inheritdoc cref="UnityEngine.InputSystem.InputActionMap.Disable()" />
@@ -376,9 +376,9 @@ public partial class @PlayerControls: IInputActionCollection2, IDisposable
         /// <inheritdoc cref="UnityEngine.InputSystem.InputActionMap.enabled" />
         public bool enabled => Get().enabled;
         /// <summary>
-        /// Implicitly converts an <see ref="PlayerOnLandActions" /> to an <see ref="InputActionMap" /> instance.
+        /// Implicitly converts an <see ref="GameplayActions" /> to an <see ref="InputActionMap" /> instance.
         /// </summary>
-        public static implicit operator InputActionMap(PlayerOnLandActions set) { return set.Get(); }
+        public static implicit operator InputActionMap(GameplayActions set) { return set.Get(); }
         /// <summary>
         /// Adds <see cref="InputAction.started"/>, <see cref="InputAction.performed"/> and <see cref="InputAction.canceled"/> callbacks provided via <param cref="instance" /> on all input actions contained in this map.
         /// </summary>
@@ -386,11 +386,11 @@ public partial class @PlayerControls: IInputActionCollection2, IDisposable
         /// <remarks>
         /// If <paramref name="instance" /> is <c>null</c> or <paramref name="instance"/> have already been added this method does nothing.
         /// </remarks>
-        /// <seealso cref="PlayerOnLandActions" />
-        public void AddCallbacks(IPlayerOnLandActions instance)
+        /// <seealso cref="GameplayActions" />
+        public void AddCallbacks(IGameplayActions instance)
         {
-            if (instance == null || m_Wrapper.m_PlayerOnLandActionsCallbackInterfaces.Contains(instance)) return;
-            m_Wrapper.m_PlayerOnLandActionsCallbackInterfaces.Add(instance);
+            if (instance == null || m_Wrapper.m_GameplayActionsCallbackInterfaces.Contains(instance)) return;
+            m_Wrapper.m_GameplayActionsCallbackInterfaces.Add(instance);
             @Move.started += instance.OnMove;
             @Move.performed += instance.OnMove;
             @Move.canceled += instance.OnMove;
@@ -414,8 +414,8 @@ public partial class @PlayerControls: IInputActionCollection2, IDisposable
         /// <remarks>
         /// Calling this method when <paramref name="instance" /> have not previously been registered has no side-effects.
         /// </remarks>
-        /// <seealso cref="PlayerOnLandActions" />
-        private void UnregisterCallbacks(IPlayerOnLandActions instance)
+        /// <seealso cref="GameplayActions" />
+        private void UnregisterCallbacks(IGameplayActions instance)
         {
             @Move.started -= instance.OnMove;
             @Move.performed -= instance.OnMove;
@@ -435,12 +435,12 @@ public partial class @PlayerControls: IInputActionCollection2, IDisposable
         }
 
         /// <summary>
-        /// Unregisters <param cref="instance" /> and unregisters all input action callbacks via <see cref="PlayerOnLandActions.UnregisterCallbacks(IPlayerOnLandActions)" />.
+        /// Unregisters <param cref="instance" /> and unregisters all input action callbacks via <see cref="GameplayActions.UnregisterCallbacks(IGameplayActions)" />.
         /// </summary>
-        /// <seealso cref="PlayerOnLandActions.UnregisterCallbacks(IPlayerOnLandActions)" />
-        public void RemoveCallbacks(IPlayerOnLandActions instance)
+        /// <seealso cref="GameplayActions.UnregisterCallbacks(IGameplayActions)" />
+        public void RemoveCallbacks(IGameplayActions instance)
         {
-            if (m_Wrapper.m_PlayerOnLandActionsCallbackInterfaces.Remove(instance))
+            if (m_Wrapper.m_GameplayActionsCallbackInterfaces.Remove(instance))
                 UnregisterCallbacks(instance);
         }
 
@@ -450,27 +450,27 @@ public partial class @PlayerControls: IInputActionCollection2, IDisposable
         /// <remarks>
         /// If <paramref name="instance" /> is <c>null</c>, calling this method will only unregister all existing callbacks but not register any new callbacks.
         /// </remarks>
-        /// <seealso cref="PlayerOnLandActions.AddCallbacks(IPlayerOnLandActions)" />
-        /// <seealso cref="PlayerOnLandActions.RemoveCallbacks(IPlayerOnLandActions)" />
-        /// <seealso cref="PlayerOnLandActions.UnregisterCallbacks(IPlayerOnLandActions)" />
-        public void SetCallbacks(IPlayerOnLandActions instance)
+        /// <seealso cref="GameplayActions.AddCallbacks(IGameplayActions)" />
+        /// <seealso cref="GameplayActions.RemoveCallbacks(IGameplayActions)" />
+        /// <seealso cref="GameplayActions.UnregisterCallbacks(IGameplayActions)" />
+        public void SetCallbacks(IGameplayActions instance)
         {
-            foreach (var item in m_Wrapper.m_PlayerOnLandActionsCallbackInterfaces)
+            foreach (var item in m_Wrapper.m_GameplayActionsCallbackInterfaces)
                 UnregisterCallbacks(item);
-            m_Wrapper.m_PlayerOnLandActionsCallbackInterfaces.Clear();
+            m_Wrapper.m_GameplayActionsCallbackInterfaces.Clear();
             AddCallbacks(instance);
         }
     }
     /// <summary>
-    /// Provides a new <see cref="PlayerOnLandActions" /> instance referencing this action map.
+    /// Provides a new <see cref="GameplayActions" /> instance referencing this action map.
     /// </summary>
-    public PlayerOnLandActions @PlayerOnLand => new PlayerOnLandActions(this);
+    public GameplayActions @Gameplay => new GameplayActions(this);
     /// <summary>
-    /// Interface to implement callback methods for all input action callbacks associated with input actions defined by "PlayerOnLand" which allows adding and removing callbacks.
+    /// Interface to implement callback methods for all input action callbacks associated with input actions defined by "Gameplay" which allows adding and removing callbacks.
     /// </summary>
-    /// <seealso cref="PlayerOnLandActions.AddCallbacks(IPlayerOnLandActions)" />
-    /// <seealso cref="PlayerOnLandActions.RemoveCallbacks(IPlayerOnLandActions)" />
-    public interface IPlayerOnLandActions
+    /// <seealso cref="GameplayActions.AddCallbacks(IGameplayActions)" />
+    /// <seealso cref="GameplayActions.RemoveCallbacks(IGameplayActions)" />
+    public interface IGameplayActions
     {
         /// <summary>
         /// Method invoked when associated input action "Move" is either <see cref="UnityEngine.InputSystem.InputAction.started" />, <see cref="UnityEngine.InputSystem.InputAction.performed" /> or <see cref="UnityEngine.InputSystem.InputAction.canceled" />.

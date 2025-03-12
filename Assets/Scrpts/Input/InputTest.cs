@@ -1,35 +1,39 @@
 using UnityEngine;
 using UnityEngine.InputSystem;
 
-public class InputTest : MonoBehaviour
+public class InputTest : MonoBehaviour    
 {
 
-    private PlayerInput playerInput;
+    public InputActionReference interact;
 
-    private InputAction jumpAction;
-    private InputAction interactAction;
 
-    
 
-    private void Start()
+    // Start is called once before the first execution of Update after the MonoBehaviour is created
+    void Start()
     {
-        playerInput = GetComponent<PlayerInput>();
-
-        jumpAction = playerInput.actions.FindAction("Jump");
-        interactAction = playerInput.actions.FindAction("Interact");
+        
     }
 
-    private void Update()
+    // Update is called once per frame
+    void Update()
     {
-        if (jumpAction.IsPressed())
-        {
-            Debug.Log("Jump");
-        }   
-        if (interactAction.IsPressed())
-        {
-            Debug.Log("Interact");
-        }
+        
+    }
+
+    private void OnEnable()
+    {
+        interact.action.Enable();
+        interact.action.performed += Interact;
+    }
+
+    private void OnDisable()
+    {
+        interact.action.Disable();
+        interact.action.performed -= Interact;
+    }
+
+    private void Interact(InputAction.CallbackContext context)
+    {
+        Debug.Log("Interacted");
     }
 }
-
-

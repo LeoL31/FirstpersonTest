@@ -2,7 +2,7 @@
     "name": "PlayerControls",
     "maps": [
         {
-            "name": "PlayerOnLand",
+            "name": "Gameplay",
             "id": "0d07de8a-b34a-4b2b-9271-ae115b99cc4d",
             "actions": [
                 {

@@ -1084,8 +1084,8 @@ GameObject:
   - component: {fileID: 1584053431}
   - component: {fileID: 1584053430}
   - component: {fileID: 1584053432}
-  - component: {fileID: 1584053434}
   - component: {fileID: 1584053433}
+  - component: {fileID: 1584053434}
   m_Layer: 0
   m_Name: Player First Person
   m_TagString: Untagged
@@ -1210,7 +1210,7 @@ MonoBehaviour:
     m_ActionName: 'PlayerOnLand/Interact[/Keyboard/e]'
   m_NeverAutoSwitchControlSchemes: 0
   m_DefaultControlScheme: 
-  m_DefaultActionMap: PlayerOnLand
+  m_DefaultActionMap: Gameplay
   m_SplitScreenIndex: -1
   m_Camera: {fileID: 0}
 --- !u!114 &1584053434
@@ -1225,6 +1225,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 83b99741b2499614d8436f6e570b4b88, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  interact: {fileID: -6338931461750897533, guid: 0253e44c82b21cc4f8afe2ea242775b1, type: 3}
 --- !u!1 &1823688464
 GameObject:
   m_ObjectHideFlags: 0
