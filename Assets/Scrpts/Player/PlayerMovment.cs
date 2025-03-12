@@ -1,4 +1,5 @@
 using UnityEngine;
+using UnityEngine.InputSystem;
 
 [RequireComponent(typeof(CharacterController))]
 public class PlayerMovment : MonoBehaviour
@@ -33,14 +34,72 @@ public class PlayerMovment : MonoBehaviour
     private CharacterController controller;
     private Vector3 velocity;
     private bool isGrounded;
-    
-    
+
+
+    // Input References
+    // This reference is set through the Inspector.
+    [Header("Input Key Mapping")]
+    public InputActionReference interactionAction;
+    public InputActionReference jumpAction;
+    public InputActionReference runAction;
+    public InputActionReference chroutchAction;
+
 
     void Start()
     {
         controller = GetComponent<CharacterController>();
         currentState = MovementState.Walking;
         currentSpeed = walkSpeed;
+    }
+
+
+    private void OnEnable()
+    {
+        interactionAction.action.Enable();   
+        interactionAction.action.performed += OnInteractionPerformed;
+        jumpAction.action.Enable();
+        jumpAction.action.performed += OnJumpPerformed;
+        runAction.action.Enable();// Enable the underlying action
+        runAction.action.performed += OnRunPerformed;// Subscribe to the 'performed' event, which is fired when the action is triggered
+        runAction.action.canceled += OnRunPerformed;// Subscribe to the 'canceled' event, which is fired when the action is triggered (for button release)
+        chroutchAction.action.Enable();
+        chroutchAction.action.performed += OnCrouchPerformed;
+        chroutchAction.action.canceled += OnCrouchPerformed;
+    } 
+    private void OnDisable()
+    {
+        interactionAction.action.Disable();
+        interactionAction.action.performed -= OnInteractionPerformed;
+        jumpAction.action.Disable();
+        jumpAction.action.performed -= OnJumpPerformed;
+        runAction.action.Disable();
+        runAction.action.performed -= OnRunPerformed;
+        chroutchAction.action.Disable();
+        chroutchAction.action.performed -= OnCrouchPerformed;
+    }
+
+
+
+    //Case switching on Input Events
+    void OnInteractionPerformed(InputAction.CallbackContext context)
+    {
+        Debug.Log("Interacted");
+    }
+    void OnRunPerformed(InputAction.CallbackContext context) 
+    {
+       if (context.performed && stamina > 8) currentState = MovementState.Running;
+       if (context.canceled) currentState = MovementState.Walking;
+    }
+    void OnCrouchPerformed(InputAction.CallbackContext context) 
+    {
+        if (context.performed) currentState = MovementState.Crouching;
+        if (context.canceled) currentState = MovementState.Walking;
+    }
+    void OnJumpPerformed(InputAction.CallbackContext context)
+    {
+        if (isGrounded)
+            velocity.y = Mathf.Sqrt(jumpHeight * -2f * gravity);
+            Debug.Log("Jump");
     }
 
     void Update()
@@ -51,14 +110,6 @@ public class PlayerMovment : MonoBehaviour
         {
             velocity.y = -2;
         }
-
-        //Handle Movement State Switching
-        if (Input.GetKey(KeyCode.LeftShift) && stamina > 8f)
-            currentState = MovementState.Running;
-        else if (Input.GetKey(KeyCode.LeftControl))
-            currentState = MovementState.Crouching;
-        else
-            currentState = MovementState.Walking;
 
         //Set speed based on state
         switch (currentState)
@@ -79,9 +130,6 @@ public class PlayerMovment : MonoBehaviour
         float z = Input.GetAxis("Vertical");
         Vector3 move = transform.right * x + transform.forward * z;
 
-
-        //Aplay Movement
-        currentSpeed = Mathf.Lerp(currentSpeed, currentSpeed, acceleration * Time.deltaTime);
         controller.Move(move.normalized * currentSpeed * Time.deltaTime);
 
         //Stamina Drain & Regen Delay
@@ -102,12 +150,6 @@ public class PlayerMovment : MonoBehaviour
             }
         }
         stamina = Mathf.Clamp(stamina, 0, maxStamina);
-
-        // Jumping
-        if (Input.GetButtonDown("Jump") && isGrounded)
-        {
-            velocity.y = Mathf.Sqrt(-2 * gravity * jumpHeight);
-        }
 
         //Apply Gravity
         velocity.y += gravity * Time.deltaTime;
