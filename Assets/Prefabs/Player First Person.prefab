@@ -59,7 +59,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 4364969938468547019}
   serializedVersion: 2
-  m_LocalRotation: {x: -0, y: 0.8858315, z: -0, w: -0.46400726}
+  m_LocalRotation: {x: 0, y: 0.8858314, z: -0, w: -0.46400726}
   m_LocalPosition: {x: 0, y: 2.76, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
@@ -107,15 +107,15 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   walkSpeed: 5
-  runSpeed: 11
+  runSpeed: 15
   crouchSpeed: 4
-  acceleration: 8
+  acceleration: 10
   maxStamina: 400
   staminaReductionSpeed: 50
   staminaRegenSpeed: 3
   regenDelay: 2
-  jumpHeight: 3
-  gravity: -9.81
+  jumpHeight: 0.8
+  gravity: -19.62
   groundCheck: {fileID: 8802468886896568720}
   groundDistance: 0.4
   groundMask:

@@ -10,8 +10,9 @@ public class PlayerMovment : MonoBehaviour
     [SerializeField] private float walkSpeed = 8f;
     [SerializeField] private float runSpeed = 11f;
     [SerializeField] private float crouchSpeed = 4f;
-    [SerializeField] private float acceleration = 8f;
+    [SerializeField] private float acceleration = 0.5f;
     private MovementState currentState;
+    private float targetSpeed;
     private float currentSpeed;
 
     [Header("Stamina Settings")]
@@ -115,13 +116,13 @@ public class PlayerMovment : MonoBehaviour
         switch (currentState)
         {
             case MovementState.Walking:
-                currentSpeed = walkSpeed;
+                targetSpeed = walkSpeed;
                 break;
             case MovementState.Running:
-                currentSpeed = runSpeed;
+                targetSpeed = runSpeed;
                 break;
             case MovementState.Crouching:
-                currentSpeed = crouchSpeed;
+                targetSpeed = crouchSpeed;
                 break;
         }
 
@@ -129,8 +130,10 @@ public class PlayerMovment : MonoBehaviour
         float x = Input.GetAxis("Horizontal");
         float z = Input.GetAxis("Vertical");
         Vector3 move = transform.right * x + transform.forward * z;
-
+        
+        currentSpeed = Mathf.Lerp(currentSpeed, targetSpeed, acceleration * Time.deltaTime); // Smoothly change speed
         controller.Move(move.normalized * currentSpeed * Time.deltaTime);
+        Debug.Log(currentSpeed);
 
         //Stamina Drain & Regen Delay
         if (currentState == MovementState.Running && move.magnitude > 0.1f)
