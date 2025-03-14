@@ -35,6 +35,8 @@ public class PlayerMovment : MonoBehaviour
     private CharacterController controller;
     private Vector3 velocity;
     private bool isGrounded;
+    private Vector3 move;
+    private Vector2 moveAmount;
 
 
     // Input References
@@ -44,7 +46,7 @@ public class PlayerMovment : MonoBehaviour
     public InputActionReference interactionAction;
     public InputActionReference jumpAction;
     public InputActionReference runAction;
-    public InputActionReference chroutchAction;
+    public InputActionReference crouchAction;
 
 
     void Start()
@@ -58,7 +60,6 @@ public class PlayerMovment : MonoBehaviour
     private void OnEnable()
     {
         movementAction.action.Enable();
-        movementAction.action.performed += OnActionperformed;
 
         interactionAction.action.Enable();   
         interactionAction.action.performed += OnInteractionPerformed;
@@ -70,16 +71,15 @@ public class PlayerMovment : MonoBehaviour
         runAction.action.Enable();// Enable the underlying action
         runAction.action.performed += OnRunPerformed;// Subscribe to the 'performed' event, which is fired when the action is triggered
         runAction.action.canceled += OnRunPerformed;// Subscribe to the 'canceled' event, which is fired when the action is triggered (for button release)
-       
-        chroutchAction.action.Enable();
-        chroutchAction.action.performed += OnCrouchPerformed;
-        chroutchAction.action.canceled += OnCrouchPerformed;
+
+        crouchAction.action.Enable();
+        crouchAction.action.performed += OnCrouchPerformed;
+        crouchAction.action.canceled += OnCrouchPerformed;
     }
 
     private void OnDisable()
     {
         movementAction.action.Disable();
-        movementAction.action.performed -= OnActionperformed;
 
         interactionAction.action.Disable();
         interactionAction.action.performed -= OnInteractionPerformed;
@@ -90,16 +90,13 @@ public class PlayerMovment : MonoBehaviour
         runAction.action.Disable();
         runAction.action.performed -= OnRunPerformed;
 
-        chroutchAction.action.Disable();
-        chroutchAction.action.performed -= OnCrouchPerformed;
-
-        movementAction.action.Disable();
+        crouchAction.action.Disable();
+        crouchAction.action.performed -= OnCrouchPerformed;
     }
 
-    private void OnActionperformed(InputAction.CallbackContext context)
-    {
-        context.ReadValue<Vector2>();
-    }
+
+
+
     void OnInteractionPerformed(InputAction.CallbackContext context)
     {
         Debug.Log("Interacted(Not implemented yet! ;)");
@@ -123,13 +120,22 @@ public class PlayerMovment : MonoBehaviour
 
     void Update()
     {
-        //Ground check
+
+        GroundCheck(); //Check if player is grounded
+        Movment();//Player Horzontal Movment
+        Stamina();//Stamina Drain & Regen Delay
+        Gravity();//Apply Gravity
+    }
+    void GroundCheck() 
+    {
         isGrounded = Physics.CheckSphere(groundCheck.position, groundDistance, groundMask);
         if (isGrounded && velocity.y < 0)
         {
             velocity.y = -2;
         }
-
+    }
+    void Movment() 
+    {
         //Set speed based on state
         switch (currentState)
         {
@@ -144,16 +150,15 @@ public class PlayerMovment : MonoBehaviour
                 break;
         }
 
-        //Move player
-        //Move player
-        float x = Input.GetAxis("Horizontal");
-        float z = Input.GetAxis("Vertical");
-        Vector3 move = transform.right * x + transform.forward * z;
+        moveAmount = movementAction.action.ReadValue<Vector2>();
+        move = transform.right * moveAmount.x + transform.forward * moveAmount.y;
 
         currentSpeed = Mathf.Lerp(currentSpeed, targetSpeed, acceleration * Time.deltaTime); // Smoothly change speed
-        controller.Move(move.normalized * currentSpeed * Time.deltaTime);
 
-        //Stamina Drain & Regen Delay
+        controller.Move(move.normalized * currentSpeed * Time.deltaTime);
+    }
+    void Stamina() 
+    {
         if (currentState == MovementState.Running && move.magnitude > 0.1f)
         {
             stamina -= staminaReductionSpeed * Time.deltaTime;
@@ -171,8 +176,9 @@ public class PlayerMovment : MonoBehaviour
             }
         }
         stamina = Mathf.Clamp(stamina, 0, maxStamina);
-
-        //Apply Gravity
+    }
+    void Gravity() 
+    {
         velocity.y += gravity * Time.deltaTime;
         controller.Move(velocity * Time.deltaTime);
     }

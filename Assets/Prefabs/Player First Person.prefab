@@ -121,10 +121,11 @@ MonoBehaviour:
   groundMask:
     serializedVersion: 2
     m_Bits: 64
+  movementAction: {fileID: -7597138983295569276, guid: 0253e44c82b21cc4f8afe2ea242775b1, type: 3}
   interactionAction: {fileID: -6338931461750897533, guid: 0253e44c82b21cc4f8afe2ea242775b1, type: 3}
   jumpAction: {fileID: 8754733642485191265, guid: 0253e44c82b21cc4f8afe2ea242775b1, type: 3}
   runAction: {fileID: 2638020943987578511, guid: 0253e44c82b21cc4f8afe2ea242775b1, type: 3}
-  chroutchAction: {fileID: 2699228284820962727, guid: 0253e44c82b21cc4f8afe2ea242775b1, type: 3}
+  crouchAction: {fileID: 2699228284820962727, guid: 0253e44c82b21cc4f8afe2ea242775b1, type: 3}
 --- !u!114 &3308667004804696280
 MonoBehaviour:
   m_ObjectHideFlags: 0
