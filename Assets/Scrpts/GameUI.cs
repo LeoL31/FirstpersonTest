@@ -19,16 +19,16 @@ public class GameUI : MonoBehaviour
             UnityEngine.Cursor.visible = true;
 
             _optionsMenuVisible = true;
-            Debug.Log("Options Menu Opened");
+            
         }
-        else if (Input.GetKeyDown(KeyCode.Q) && _optionsMenuVisible == true)
+        else if (Input.GetKeyDown(KeyCode.Q) && _optionsMenuVisible == true) 
         {
             _optionsMenu.SetActive(false);
-            UnityEngine.Cursor.lockState = CursorLockMode.Locked;
+            UnityEngine.Cursor.lockState = CursorLockMode.Locked; 
             UnityEngine.Cursor.visible = false;
 
             _optionsMenuVisible = false;
-            Debug.Log("Options Menu Closed");
+            
         }
     }
 }
