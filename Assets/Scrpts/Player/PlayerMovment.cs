@@ -98,9 +98,7 @@ public class PlayerMovment : MonoBehaviour
     }
     void OnJumpPerformed(InputAction.CallbackContext context)
     {
-        if (isGrounded)
-            velocity.y = Mathf.Sqrt(jumpHeight * -2f * gravity);
-            Debug.Log("Jump");
+        if (isGrounded) velocity.y = Mathf.Sqrt(jumpHeight * -2f * gravity);
     }
 
     void Update()
@@ -133,7 +131,6 @@ public class PlayerMovment : MonoBehaviour
         
         currentSpeed = Mathf.Lerp(currentSpeed, targetSpeed, acceleration * Time.deltaTime); // Smoothly change speed
         controller.Move(move.normalized * currentSpeed * Time.deltaTime);
-        Debug.Log(currentSpeed);
 
         //Stamina Drain & Regen Delay
         if (currentState == MovementState.Running && move.magnitude > 0.1f)
