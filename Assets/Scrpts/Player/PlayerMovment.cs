@@ -16,11 +16,11 @@ public class PlayerMovment : MonoBehaviour
     private float currentSpeed;
 
     [Header("Stamina Settings")]
-     private float stamina = 400f;
     [SerializeField] private float maxStamina = 400f;
     [SerializeField] private float staminaReductionSpeed = 5f;
     [SerializeField] private float staminaRegenSpeed = 3f;
-    [SerializeField] private float regenDelay = 2f; 
+    [SerializeField] private float regenDelay = 2f;
+    private float stamina = 400f;
     private float regenTimer = 0f;                  
 
     [Header("Jumping & Gravity")]
@@ -40,6 +40,7 @@ public class PlayerMovment : MonoBehaviour
     // Input References
     // This reference is set through the Inspector.
     [Header("Input Key Mapping")]
+    public InputActionReference movementAction; // WASD movement
     public InputActionReference interactionAction;
     public InputActionReference jumpAction;
     public InputActionReference runAction;
@@ -56,36 +57,55 @@ public class PlayerMovment : MonoBehaviour
 
     private void OnEnable()
     {
+        movementAction.action.Enable();
+        movementAction.action.performed += OnActionperformed;
+
         interactionAction.action.Enable();   
         interactionAction.action.performed += OnInteractionPerformed;
+
         jumpAction.action.Enable();
         jumpAction.action.performed += OnJumpPerformed;
+
+
         runAction.action.Enable();// Enable the underlying action
         runAction.action.performed += OnRunPerformed;// Subscribe to the 'performed' event, which is fired when the action is triggered
         runAction.action.canceled += OnRunPerformed;// Subscribe to the 'canceled' event, which is fired when the action is triggered (for button release)
+       
         chroutchAction.action.Enable();
         chroutchAction.action.performed += OnCrouchPerformed;
         chroutchAction.action.canceled += OnCrouchPerformed;
-    } 
+    }
+
     private void OnDisable()
     {
+        movementAction.action.Disable();
+        movementAction.action.performed -= OnActionperformed;
+
         interactionAction.action.Disable();
         interactionAction.action.performed -= OnInteractionPerformed;
+
         jumpAction.action.Disable();
         jumpAction.action.performed -= OnJumpPerformed;
+
         runAction.action.Disable();
         runAction.action.performed -= OnRunPerformed;
+
         chroutchAction.action.Disable();
         chroutchAction.action.performed -= OnCrouchPerformed;
+
+        movementAction.action.Disable();
     }
 
-
-
-    //Case switching on Input Events
+    private void OnActionperformed(InputAction.CallbackContext context)
+    {
+        context.ReadValue<Vector2>();
+    }
     void OnInteractionPerformed(InputAction.CallbackContext context)
     {
-        Debug.Log("Interacted");
+        Debug.Log("Interacted(Not implemented yet! ;)");
     }
+
+    //Case switching on Input Events
     void OnRunPerformed(InputAction.CallbackContext context) 
     {
        if (context.performed && stamina > 8) currentState = MovementState.Running;
@@ -125,10 +145,11 @@ public class PlayerMovment : MonoBehaviour
         }
 
         //Move player
+        //Move player
         float x = Input.GetAxis("Horizontal");
         float z = Input.GetAxis("Vertical");
         Vector3 move = transform.right * x + transform.forward * z;
-        
+
         currentSpeed = Mathf.Lerp(currentSpeed, targetSpeed, acceleration * Time.deltaTime); // Smoothly change speed
         controller.Move(move.normalized * currentSpeed * Time.deltaTime);
 

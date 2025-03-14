@@ -92,7 +92,7 @@ public partial class @PlayerControls: IInputActionCollection2, IDisposable
             ""id"": ""0d07de8a-b34a-4b2b-9271-ae115b99cc4d"",
             ""actions"": [
                 {
-                    ""name"": ""Move"",
+                    ""name"": ""Movment"",
                     ""type"": ""Value"",
                     ""id"": ""06fb54ae-d854-4f85-a4ef-d61ded1cc673"",
                     ""expectedControlType"": ""Vector2"",
@@ -145,7 +145,7 @@ public partial class @PlayerControls: IInputActionCollection2, IDisposable
                     ""interactions"": """",
                     ""processors"": """",
                     ""groups"": """",
-                    ""action"": ""Move"",
+                    ""action"": ""Movment"",
                     ""isComposite"": true,
                     ""isPartOfComposite"": false
                 },
@@ -156,7 +156,7 @@ public partial class @PlayerControls: IInputActionCollection2, IDisposable
                     ""interactions"": """",
                     ""processors"": """",
                     ""groups"": """",
-                    ""action"": ""Move"",
+                    ""action"": ""Movment"",
                     ""isComposite"": false,
                     ""isPartOfComposite"": true
                 },
@@ -167,7 +167,7 @@ public partial class @PlayerControls: IInputActionCollection2, IDisposable
                     ""interactions"": """",
                     ""processors"": """",
                     ""groups"": """",
-                    ""action"": ""Move"",
+                    ""action"": ""Movment"",
                     ""isComposite"": false,
                     ""isPartOfComposite"": true
                 },
@@ -178,7 +178,7 @@ public partial class @PlayerControls: IInputActionCollection2, IDisposable
                     ""interactions"": """",
                     ""processors"": """",
                     ""groups"": """",
-                    ""action"": ""Move"",
+                    ""action"": ""Movment"",
                     ""isComposite"": false,
                     ""isPartOfComposite"": true
                 },
@@ -189,7 +189,7 @@ public partial class @PlayerControls: IInputActionCollection2, IDisposable
                     ""interactions"": """",
                     ""processors"": """",
                     ""groups"": """",
-                    ""action"": ""Move"",
+                    ""action"": ""Movment"",
                     ""isComposite"": false,
                     ""isPartOfComposite"": true
                 },
@@ -244,7 +244,7 @@ public partial class @PlayerControls: IInputActionCollection2, IDisposable
 }");
         // Gameplay
         m_Gameplay = asset.FindActionMap("Gameplay", throwIfNotFound: true);
-        m_Gameplay_Move = m_Gameplay.FindAction("Move", throwIfNotFound: true);
+        m_Gameplay_Movment = m_Gameplay.FindAction("Movment", throwIfNotFound: true);
         m_Gameplay_Jump = m_Gameplay.FindAction("Jump", throwIfNotFound: true);
         m_Gameplay_Run = m_Gameplay.FindAction("Run", throwIfNotFound: true);
         m_Gameplay_Croutch = m_Gameplay.FindAction("Croutch", throwIfNotFound: true);
@@ -329,7 +329,7 @@ public partial class @PlayerControls: IInputActionCollection2, IDisposable
     // Gameplay
     private readonly InputActionMap m_Gameplay;
     private List<IGameplayActions> m_GameplayActionsCallbackInterfaces = new List<IGameplayActions>();
-    private readonly InputAction m_Gameplay_Move;
+    private readonly InputAction m_Gameplay_Movment;
     private readonly InputAction m_Gameplay_Jump;
     private readonly InputAction m_Gameplay_Run;
     private readonly InputAction m_Gameplay_Croutch;
@@ -346,9 +346,9 @@ public partial class @PlayerControls: IInputActionCollection2, IDisposable
         /// </summary>
         public GameplayActions(@PlayerControls wrapper) { m_Wrapper = wrapper; }
         /// <summary>
-        /// Provides access to the underlying input action "Gameplay/Move".
+        /// Provides access to the underlying input action "Gameplay/Movment".
         /// </summary>
-        public InputAction @Move => m_Wrapper.m_Gameplay_Move;
+        public InputAction @Movment => m_Wrapper.m_Gameplay_Movment;
         /// <summary>
         /// Provides access to the underlying input action "Gameplay/Jump".
         /// </summary>
@@ -391,9 +391,9 @@ public partial class @PlayerControls: IInputActionCollection2, IDisposable
         {
             if (instance == null || m_Wrapper.m_GameplayActionsCallbackInterfaces.Contains(instance)) return;
             m_Wrapper.m_GameplayActionsCallbackInterfaces.Add(instance);
-            @Move.started += instance.OnMove;
-            @Move.performed += instance.OnMove;
-            @Move.canceled += instance.OnMove;
+            @Movment.started += instance.OnMovment;
+            @Movment.performed += instance.OnMovment;
+            @Movment.canceled += instance.OnMovment;
             @Jump.started += instance.OnJump;
             @Jump.performed += instance.OnJump;
             @Jump.canceled += instance.OnJump;
@@ -417,9 +417,9 @@ public partial class @PlayerControls: IInputActionCollection2, IDisposable
         /// <seealso cref="GameplayActions" />
         private void UnregisterCallbacks(IGameplayActions instance)
         {
-            @Move.started -= instance.OnMove;
-            @Move.performed -= instance.OnMove;
-            @Move.canceled -= instance.OnMove;
+            @Movment.started -= instance.OnMovment;
+            @Movment.performed -= instance.OnMovment;
+            @Movment.canceled -= instance.OnMovment;
             @Jump.started -= instance.OnJump;
             @Jump.performed -= instance.OnJump;
             @Jump.canceled -= instance.OnJump;
@@ -473,12 +473,12 @@ public partial class @PlayerControls: IInputActionCollection2, IDisposable
     public interface IGameplayActions
     {
         /// <summary>
-        /// Method invoked when associated input action "Move" is either <see cref="UnityEngine.InputSystem.InputAction.started" />, <see cref="UnityEngine.InputSystem.InputAction.performed" /> or <see cref="UnityEngine.InputSystem.InputAction.canceled" />.
+        /// Method invoked when associated input action "Movment" is either <see cref="UnityEngine.InputSystem.InputAction.started" />, <see cref="UnityEngine.InputSystem.InputAction.performed" /> or <see cref="UnityEngine.InputSystem.InputAction.canceled" />.
         /// </summary>
         /// <seealso cref="UnityEngine.InputSystem.InputAction.started" />
         /// <seealso cref="UnityEngine.InputSystem.InputAction.performed" />
         /// <seealso cref="UnityEngine.InputSystem.InputAction.canceled" />
-        void OnMove(InputAction.CallbackContext context);
+        void OnMovment(InputAction.CallbackContext context);
         /// <summary>
         /// Method invoked when associated input action "Jump" is either <see cref="UnityEngine.InputSystem.InputAction.started" />, <see cref="UnityEngine.InputSystem.InputAction.performed" /> or <see cref="UnityEngine.InputSystem.InputAction.canceled" />.
         /// </summary>
