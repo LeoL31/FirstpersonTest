@@ -4,7 +4,7 @@ using UnityEngine;
 public class GameUI : MonoBehaviour
 {
     [SerializeField] private GameObject _optionsMenu;
-    private GameObject _optionsMenuVisible;
+    private bool _optionsMenuVisible;
 
     private void Start()
     {
@@ -17,12 +17,18 @@ public class GameUI : MonoBehaviour
             _optionsMenu.SetActive(true);
             UnityEngine.Cursor.lockState = CursorLockMode.None;
             UnityEngine.Cursor.visible = true;
+
+            _optionsMenuVisible = true;
+            Debug.Log("Options Menu Opened");
         }
         else if (Input.GetKeyDown(KeyCode.Q) && _optionsMenuVisible == true)
         {
             _optionsMenu.SetActive(false);
             UnityEngine.Cursor.lockState = CursorLockMode.Locked;
             UnityEngine.Cursor.visible = false;
+
+            _optionsMenuVisible = false;
+            Debug.Log("Options Menu Closed");
         }
     }
 }

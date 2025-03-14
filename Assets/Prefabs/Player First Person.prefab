@@ -43,7 +43,7 @@ GameObject:
   - component: {fileID: 769064260061610033}
   - component: {fileID: 7525499203090429639}
   - component: {fileID: 3308667004804696280}
-  - component: {fileID: 5333854154903468305}
+  - component: {fileID: 6753436105621119218}
   m_Layer: 0
   m_Name: Player First Person
   m_TagString: Untagged
@@ -115,7 +115,7 @@ MonoBehaviour:
   staminaRegenSpeed: 3
   regenDelay: 2
   jumpHeight: 0.8
-  gravity: -19.62
+  gravity: -17.658
   groundCheck: {fileID: 8802468886896568720}
   groundDistance: 0.4
   groundMask:
@@ -175,7 +175,7 @@ MonoBehaviour:
   m_DefaultActionMap: Gameplay
   m_SplitScreenIndex: -1
   m_Camera: {fileID: 0}
---- !u!114 &5333854154903468305
+--- !u!114 &6753436105621119218
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -184,10 +184,10 @@ MonoBehaviour:
   m_GameObject: {fileID: 4364969938468547019}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 83b99741b2499614d8436f6e570b4b88, type: 3}
+  m_Script: {fileID: 11500000, guid: d2642448b46fbf14abb0b8c0d9f8af0e, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  interact: {fileID: -6338931461750897533, guid: 0253e44c82b21cc4f8afe2ea242775b1, type: 3}
+  _optionsMenu: {fileID: 0}
 --- !u!1 &7848320854577060544
 GameObject:
   m_ObjectHideFlags: 0
