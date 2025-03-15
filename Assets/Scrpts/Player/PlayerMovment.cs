@@ -136,6 +136,13 @@ public class PlayerMovment : MonoBehaviour
     }
     void Movment() 
     {
+
+        if (currentState == MovementState.Running && moveAmount.y <= 0)// Force Walking if player is not moving forward
+        {
+            currentState = MovementState.Walking;
+        }
+
+
         //Set speed based on state
         switch (currentState)
         {
