@@ -43,7 +43,6 @@ public class PlayerMovment : MonoBehaviour
     // This reference is set through the Inspector.
     [Header("Input Key Mapping")]
     public InputActionReference movementAction; // WASD movement
-    public InputActionReference interactionAction;
     public InputActionReference jumpAction;
     public InputActionReference runAction;
     public InputActionReference crouchAction;
@@ -61,9 +60,6 @@ public class PlayerMovment : MonoBehaviour
     {
         movementAction.action.Enable();
 
-        interactionAction.action.Enable();   
-        interactionAction.action.performed += OnInteractionPerformed;
-
         jumpAction.action.Enable();
         jumpAction.action.performed += OnJumpPerformed;
 
@@ -80,9 +76,6 @@ public class PlayerMovment : MonoBehaviour
     private void OnDisable()
     {
         movementAction.action.Disable();
-
-        interactionAction.action.Disable();
-        interactionAction.action.performed -= OnInteractionPerformed;
 
         jumpAction.action.Disable();
         jumpAction.action.performed -= OnJumpPerformed;
