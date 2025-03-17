@@ -1,69 +1,58 @@
 using UnityEngine;
 using UnityEngine.UI;
 
+public interface IInteractable
+{
+   public void Interact();
+}
+
 public class InteractionRaycast : MonoBehaviour
 {
-    [SerializeField] private float rayDistance = 2f;
+    [SerializeField] private float interactRange = 2f;
     [SerializeField] private LayerMask layerMaskInteract;
     [SerializeField] private string excludeLayerName = null;
-
-    private DoorController raycastedObjekt;
-
-    [SerializeField] private KeyCode interactionKey = KeyCode.E;
-
+    [SerializeField] private KeyCode interactionKey = KeyCode.V;
     [SerializeField] private Image crosshair = null;
-    private bool isCrosshairActive;
-    private bool doOnce;
+
+    [SerializeField] private bool debugRay = false;
+
+    private Color detecionColor = Color.white;
+
 
     private const string interactbleTag = "Interactable";
 
     private void Update()
     {
-        RaycastHit hit;
+        if (debugRay == true)
+        {
+            Debug.DrawRay(transform.position, transform.forward * interactRange, detecionColor);
+        }
+
+        crosshair.color = detecionColor;
+
+        RaycastHit hitInfo;
         Vector3 forward = transform.TransformDirection(Vector3.forward);
 
         int mask = 1 << LayerMask.NameToLayer(excludeLayerName) | layerMaskInteract.value;
 
-        if(Physics.Raycast(transform.position, transform.forward, out hit, rayDistance, mask))
+        if (Physics.Raycast(transform.position, transform.forward, out hitInfo, interactRange, mask))
         {
-            if (hit.collider.CompareTag(interactbleTag))
+            if (hitInfo.collider.CompareTag(interactbleTag))
             {
-                if (!doOnce)
+                detecionColor = Color.green;
+                if (hitInfo.collider.gameObject.TryGetComponent(out IInteractable interactObjekt))
                 {
-                    raycastedObjekt = hit.collider.GetComponent<DoorController>();
-                    CrosshairChange(true);
-                }
-
-                isCrosshairActive = true;
-                doOnce = true;
-
-                if (Input.GetKeyDown(interactionKey))
-                {
-                    raycastedObjekt.ChangeDoorState();
+                    Debug.Log("Hit: " + hitInfo.collider.name);
+                    if (Input.GetKeyDown(interactionKey))
+                    {
+                        interactObjekt.Interact();
+                    }
                 }
             }
         }
         else
         {
-            if (isCrosshairActive)
-            {
-                CrosshairChange(false);
-            }
-            doOnce = false;
+            detecionColor = Color.white;
         }
     }
-
-    private void CrosshairChange(bool on)
-    {
-        if (on && !doOnce)
-        {
-            crosshair.color = Color.red;
-        }
-        else
-        {
-            crosshair.color = Color.white;
-            isCrosshairActive = false;
-        }
-    }
-
 }

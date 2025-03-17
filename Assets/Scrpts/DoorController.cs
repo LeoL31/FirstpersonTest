@@ -1,6 +1,6 @@
 using UnityEngine;
 
-public class DoorController : MonoBehaviour
+public class DoorController : MonoBehaviour, IInteractable
 {
     private Animator doorAnimation;
     private bool isOpen;
@@ -10,7 +10,7 @@ public class DoorController : MonoBehaviour
         doorAnimation = GetComponent<Animator>();
     }
 
-    public void ChangeDoorState() 
+    public void Interact() 
     {
      if (!isOpen)
         {
