@@ -123,6 +123,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: f47198844b8cea64990d9e0e58b1aded, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  randomDoorOnStart: 1
 --- !u!65 &6404149104559359766
 BoxCollider:
   m_ObjectHideFlags: 0
