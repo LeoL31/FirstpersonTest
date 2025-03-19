@@ -12,8 +12,8 @@ GameObject:
   - component: {fileID: 1056548435279821812}
   - component: {fileID: 2976152017468772158}
   - component: {fileID: 7424820778068731341}
+  - component: {fileID: 5826817957939269348}
   - component: {fileID: 560548489246349605}
-  - component: {fileID: 6404149104559359766}
   m_Layer: 7
   m_Name: door (1)
   m_TagString: Interactable
@@ -31,7 +31,7 @@ Transform:
   serializedVersion: 2
   m_LocalRotation: {x: -0.7069834, y: 0, z: 0, w: 0.7072302}
   m_LocalPosition: {x: -3.5816712, y: 0, z: 10.888108}
-  m_LocalScale: {x: 100, y: 100, z: 100}
+  m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 0}
@@ -111,20 +111,7 @@ Animator:
   m_AllowConstantClipSamplingOptimization: 1
   m_KeepAnimatorStateOnDisable: 0
   m_WriteDefaultValuesOnDisable: 0
---- !u!114 &560548489246349605
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 3624718261446668011}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: f47198844b8cea64990d9e0e58b1aded, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  randomDoorOnStart: 1
---- !u!65 &6404149104559359766
+--- !u!65 &5826817957939269348
 BoxCollider:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -143,5 +130,20 @@ BoxCollider:
   m_ProvidesContacts: 0
   m_Enabled: 1
   serializedVersion: 3
-  m_Size: {x: 0.009040377, y: 0.00053487916, z: 0.020999994}
-  m_Center: {x: -0.0045202025, y: 0.00000011776863, z: 0.010499993}
+  m_Size: {x: 0.9040377, y: 0.05348794, z: 2.1000001}
+  m_Center: {x: -0.4520203, y: 0.000011776576, z: 1.0499996}
+--- !u!114 &560548489246349605
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 3624718261446668011}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: f47198844b8cea64990d9e0e58b1aded, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  randomDoorOnStart: 1
+  randomDoorOnStartChancePercentage: 50
+  IsLocked: 0

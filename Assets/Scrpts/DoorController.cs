@@ -3,12 +3,15 @@ using UnityEngine;
 public class DoorController : MonoBehaviour, IInteractable
 {
 
-    [SerializeField] bool randomDoorOnStart = true;
-    [SerializeField] bool IsLocked = false;
+    [SerializeField] private bool randomDoorOnStart = true;
+    [SerializeField] private int randomDoorOnStartChancePercentage = 50;
+    [SerializeField] private bool IsLocked = false;
 
     private Animator doorAnimation;
     private bool isOpen;
     private bool isMoving = true; // checking if the Animations is Playing so you cant spamm the door open and close
+
+    private float randomNummer;
 
     private void Awake()
     {
@@ -18,14 +21,18 @@ public class DoorController : MonoBehaviour, IInteractable
     {
         if (randomDoorOnStart == true)
         {
-            isOpen = Random.Range(0, 2) == 0 ? false : true;
-            if (isOpen)
+            randomNummer = Random.Range(0, 100);
+
+            // If the random number is < chance, open the door
+            if (randomNummer < randomDoorOnStartChancePercentage)
             {
                 doorAnimation.Play("DoorOpen", 0, 0.0f);
+                isOpen = true;
             }
             else
             {
                 doorAnimation.Play("DoorClose", 0, 0.0f);
+                isOpen = false;
             }
         }
     }
