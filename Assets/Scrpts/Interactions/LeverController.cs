@@ -3,6 +3,8 @@ using UnityEngine;
 
 public class LeverController : MonoBehaviour, IInteractable
 {
+    [SerializeField] private GameObject Objekt;
+
 
     [SerializeField] private bool isLocked = false;
     [SerializeField] private bool isOffOnStart = false;
@@ -51,10 +53,12 @@ public class LeverController : MonoBehaviour, IInteractable
     {
         isOn = true;
         isMoving = false;
+        Objekt.SetActive(false);
     }
     public void LeverOffAniDone()
     {
         isOn = false;
         isMoving = false;
+        Objekt.SetActive(true);
     }
 }
