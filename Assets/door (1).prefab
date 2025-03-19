@@ -145,5 +145,5 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   randomDoorOnStart: 1
-  randomDoorOnStartChancePercentage: 50
-  IsLocked: 0
+  randomDoorOnStartChancePercentage: 100
+  IsLocked: 1
