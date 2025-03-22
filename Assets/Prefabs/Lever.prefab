@@ -10,7 +10,7 @@ PrefabInstance:
     m_Modifications:
     - target: {fileID: -8679921383154817045, guid: 8642f2090b23ead4e8d2d66fe80b470d, type: 3}
       propertyPath: m_LocalPosition.x
-      value: -1.1034528
+      value: -1.1042911
       objectReference: {fileID: 0}
     - target: {fileID: -8679921383154817045, guid: 8642f2090b23ead4e8d2d66fe80b470d, type: 3}
       propertyPath: m_LocalPosition.y
@@ -18,11 +18,11 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: -8679921383154817045, guid: 8642f2090b23ead4e8d2d66fe80b470d, type: 3}
       propertyPath: m_LocalPosition.z
-      value: -5.857666
+      value: -14.529797
       objectReference: {fileID: 0}
     - target: {fileID: -8679921383154817045, guid: 8642f2090b23ead4e8d2d66fe80b470d, type: 3}
       propertyPath: m_LocalRotation.w
-      value: -1
+      value: -0.00000034272668
       objectReference: {fileID: 0}
     - target: {fileID: -8679921383154817045, guid: 8642f2090b23ead4e8d2d66fe80b470d, type: 3}
       propertyPath: m_LocalRotation.x
@@ -30,7 +30,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: -8679921383154817045, guid: 8642f2090b23ead4e8d2d66fe80b470d, type: 3}
       propertyPath: m_LocalRotation.y
-      value: 0.00000053644175
+      value: -1
       objectReference: {fileID: 0}
     - target: {fileID: -8679921383154817045, guid: 8642f2090b23ead4e8d2d66fe80b470d, type: 3}
       propertyPath: m_LocalRotation.z
@@ -42,7 +42,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: -8679921383154817045, guid: 8642f2090b23ead4e8d2d66fe80b470d, type: 3}
       propertyPath: m_LocalEulerAnglesHint.y
-      value: 360
+      value: 540
       objectReference: {fileID: 0}
     - target: {fileID: -8679921383154817045, guid: 8642f2090b23ead4e8d2d66fe80b470d, type: 3}
       propertyPath: m_LocalEulerAnglesHint.z
@@ -206,5 +206,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: fbb63e871f7b9a34caefb3ff7aa23332, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  Objekt: {fileID: 0}
   isLocked: 0
   isOffOnStart: 0

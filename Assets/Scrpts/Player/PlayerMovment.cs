@@ -39,7 +39,7 @@ public class PlayerMovment : MonoBehaviour
     private Vector2 moveAmount;
 
 
-    // Input References
+    // InputSystem References
     // This reference is set through the Inspector.
     [Header("Input Key Mapping")]
     public InputActionReference movementAction; // WASD movement
