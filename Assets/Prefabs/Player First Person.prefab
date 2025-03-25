@@ -113,10 +113,11 @@ MonoBehaviour:
   acceleration: 10
   maxStamina: 400
   staminaReductionSpeed: 50
-  staminaRegenSpeed: 3
+  staminaRegenSpeed: 15
   regenDelay: 2
   jumpHeight: 0.8
   gravity: -17.658
+  staminaSlider: {fileID: 0}
   groundCheck: {fileID: 8802468886896568720}
   groundDistance: 0.4
   groundMask:
@@ -171,6 +172,10 @@ MonoBehaviour:
       m_Calls: []
     m_ActionId: 02985bb8-525c-4467-85da-b267a13b37c1
     m_ActionName: 'PlayerOnLand/Interact[/Keyboard/e]'
+  - m_PersistentCalls:
+      m_Calls: []
+    m_ActionId: bfa5a161-4cff-4bbf-81f1-e0319ceabdcb
+    m_ActionName: 'Gameplay/Fire[/Mouse/leftButton]'
   m_NeverAutoSwitchControlSchemes: 0
   m_DefaultControlScheme: 
   m_DefaultActionMap: Gameplay

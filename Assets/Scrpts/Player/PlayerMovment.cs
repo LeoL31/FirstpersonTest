@@ -1,5 +1,6 @@
 using UnityEngine;
 using UnityEngine.InputSystem;
+using UnityEngine.UI;
 
 [RequireComponent(typeof(CharacterController))]
 public class PlayerMovment : MonoBehaviour
@@ -28,6 +29,7 @@ public class PlayerMovment : MonoBehaviour
     [SerializeField] private float gravity = -9.81f;
 
     [Header("Setup")]
+    public Slider staminaSlider;
     [SerializeField] private Transform groundCheck;
     [SerializeField] private float groundDistance = 0.4f;
     [SerializeField] private LayerMask groundMask;
@@ -53,6 +55,10 @@ public class PlayerMovment : MonoBehaviour
         controller = GetComponent<CharacterController>();
         currentState = MovementState.Walking;
         currentSpeed = walkSpeed;
+
+        //Stamina UI Setup
+        staminaSlider.maxValue = 1;
+        staminaSlider.gameObject.SetActive(true);
     }
 
 
@@ -159,6 +165,8 @@ public class PlayerMovment : MonoBehaviour
     }
     void Stamina() 
     {
+        staminaSlider.value = stamina / maxStamina;
+
         if (currentState == MovementState.Running && move.magnitude > 0.1f)
         {
             stamina -= staminaReductionSpeed * Time.deltaTime;
@@ -176,6 +184,16 @@ public class PlayerMovment : MonoBehaviour
             }
         }
         stamina = Mathf.Clamp(stamina, 0, maxStamina);
+
+        //Stamina UI
+        if (stamina < maxStamina)
+        {
+            staminaSlider.gameObject.SetActive(true);
+        }
+        else
+        {
+            staminaSlider.gameObject.SetActive(false);
+        }
     }
     void Gravity() 
     {
